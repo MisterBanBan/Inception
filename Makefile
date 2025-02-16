@@ -9,4 +9,4 @@ up:
 down:
 	  docker-compose -f srcs/docker-compose.yml down --volumes
 logs:
-	  docker-compose logs -f mariadb
+	docker-compose -f srcs/docker-compose.yml logs -f mariadb
