@@ -20,18 +20,20 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+      args:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - mariadb_data:/var/lib/mysql
     restart: unless-stopped
     networks:
       - inception
+    env_file:
+      - .env
 
   wordpress:
     container_name: wordpress
@@ -52,8 +54,16 @@ services:
 
 volumes:
   wordpress:
+    driver_opts:
+      o: bind
+      type: none
+      device: '/home/afavier/data/wordpress'
     driver: local
   mariadb_data:
+    driver_opts:
+      o: bind
+      type: none
+      device: '/home/afavier/data/mariadb'
     driver: local
 
 networks:

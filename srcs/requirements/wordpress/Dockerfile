@@ -13,16 +13,6 @@ RUN apt update -y && apt upgrade -y && apt install -y \
 # Désactiver phar.readonly
 RUN sed -i 's/phar.readonly = On/phar.readonly = Off/' /etc/php/7.4/cli/php.ini
 
-# Télécharger WordPress et l’extraire dans /var/www/html
-RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www \
-    && cd /var/www \
-    && tar -xzf wordpress-6.0-fr_FR.tar.gz \
-    && rm wordpress-6.0-fr_FR.tar.gz \
-    && mkdir -p /var/www/html \
-    && mv wordpress/* html/ \
-    && rmdir wordpress \
-    && chown -R www-data:www-data /var/www/html
-
 # Télécharger WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
