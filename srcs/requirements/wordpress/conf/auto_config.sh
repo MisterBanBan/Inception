@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Attendre que la DB soit prête
+# Attendre que la DB soit prête boucle inf !!!!!!
 while ! mysqladmin ping -h $MYSQL_HOST --silent --user=$MYSQL_USER --password=$MYSQL_PASSWORD; do
     echo "Waiting for mariadb to be ready..."
     sleep 1

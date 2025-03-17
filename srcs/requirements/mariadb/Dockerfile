@@ -18,12 +18,10 @@ COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 # Créer le répertoire pour le socket et ajuster les permissions
 RUN mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld /var/lib/mysql
 
-# Créer le fichier d'initialisation
-RUN echo "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" && \
-    echo "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';" && \
-    echo "GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';" && \
-    echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';" && \
-    echo "FLUSH PRIVILEGES;"
+# Créer le fichier d'initialisation    probleme ici !!!!!
+RUN mkdir -p /docker-entrypoint-initdb.d
+COPY tools/init.sql /docker-entrypoint-initdb.d/
+
 
 # Exposer le port de MariaDB
 EXPOSE 3306
