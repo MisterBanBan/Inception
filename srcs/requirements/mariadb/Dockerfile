@@ -3,10 +3,10 @@ FROM debian:11
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Définition des arguments pour l'initialisation de la BDD
-#ARG MYSQL_DATABASE
-#ARG MYSQL_USER
-#ARG MYSQL_PASSWORD
-#ARG MYSQL_ROOT_PASSWORD
+ARG MYSQL_DATABASE
+ARG MYSQL_USER
+ARG MYSQL_PASSWORD
+ARG MYSQL_ROOT_PASSWORD
 
 # install MariaDB Server
 RUN apt update -y && apt upgrade -y && apt install -y mariadb-server && \
