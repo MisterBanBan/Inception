@@ -1,6 +1,6 @@
 FROM debian:11
 
-# Installer PHP, WP-CLI, etc.
+# Install PHP, WP-CLI, etc.
 RUN apt update -y && apt upgrade -y && apt install -y \
     wget \
     php7.4 \
