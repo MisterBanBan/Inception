@@ -12,3 +12,5 @@ mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASS
 mysql -u root -e "FLUSH PRIVILEGES;"
 
 echo "Initialisation de la base de données terminée!"
+
+exec "$@"
