@@ -21,6 +21,7 @@ RUN mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld /var/lib/mysql
 #creat file to init
 RUN mkdir -p /docker-entrypoint-initdb.d
 COPY tools/init-db.sh /docker-entrypoint-initdb.d/
+RUN chmod 755 /docker-entrypoint-initdb.d/init-db.sh
 
 # expose port of MariaDB
 EXPOSE 3306
