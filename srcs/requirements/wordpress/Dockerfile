@@ -10,9 +10,6 @@ RUN apt update -y && apt upgrade -y && apt install -y \
     curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Désactiver phar.readonly
-RUN sed -i 's/phar.readonly = On/phar.readonly = Off/' /etc/php/7.4/cli/php.ini
-
 # Télécharger WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
