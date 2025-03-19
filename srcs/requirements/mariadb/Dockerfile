@@ -2,7 +2,6 @@ FROM debian:11
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Définition des arguments pour l'initialisation de la BDD
 ARG MYSQL_DATABASE
 ARG MYSQL_USER
 ARG MYSQL_PASSWORD

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Attendre que la DB soit prête boucle inf !!!!!!
+# wait db is ready
 while ! mysqladmin ping -h $MYSQL_HOST --silent --user=$MYSQL_USER --password=$MYSQL_PASSWORD; do
     echo "Waiting for mariadb to be ready..."
     sleep 1
 done
 
-# Aller dans le répertoire où WordPress est installé
+# Go to the directory where WordPress is installed
 cd /var/www/html
 
 if [ -f "/var/www/html/wp-config.php" ]; then
@@ -35,7 +35,7 @@ else
         --user_pass=$WP_USER_PASSWORD \
         --role=author
 
-    echo "WordPress setup complete"
+    echo "WordPress setup complete find the web site at $WP_URL"
 fi
 
 exec "$@"
