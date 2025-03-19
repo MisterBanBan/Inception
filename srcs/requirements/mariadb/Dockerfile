@@ -26,5 +26,5 @@ COPY tools/init-db.sh /docker-entrypoint-initdb.d/
 EXPOSE 3306
 
 # Start MariaDB in foreground mode and run the initialization file
-ENTRYPOINT ["/usr/local/bin/init-db.sh"]
+ENTRYPOINT ["/docker-entrypoint-initdb.d/init-db.sh"]
 CMD ["mysqld_safe"]
