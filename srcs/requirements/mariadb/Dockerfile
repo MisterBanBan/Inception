@@ -9,14 +9,10 @@ ARG MYSQL_PASSWORD
 ARG MYSQL_ROOT_PASSWORD
 
 # install MariaDB Server
-RUN apt update -y && apt upgrade -y && apt install -y mariadb-server && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt update -y && apt upgrade -y && apt install -y mariadb-server
 
 # Copy custom configuration from MariaDB
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-
-# Create the directory for the socket and adjust the permissions
-RUN mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld /var/lib/mysql
 
 #creat file to init
 RUN mkdir -p /docker-entrypoint-initdb.d
